@@ -26,6 +26,11 @@
           <p class="price">
             {{ product.price | formatPrice }}
           </p>
+          <button class="default"
+            @click="addToCart"
+          >
+            Add to cart
+          </button>
         </div>
       </div>
     </main>
@@ -45,7 +50,8 @@
             'organic goodness for your cat.',
           price: 2000,
           image: 'assets/images/product-fullsize.png'
-        }
+        },
+        cart: []
       },
       filters: {
         formatPrice: function(price) {
@@ -65,7 +71,12 @@
             return '$' + (price / 100).toFixed(2);
           }
         }
-      } 
+      },
+      methods: {
+        addToCart: function() {
+          this.cart.push( this.product.id );
+        }
+      }
     });
   </script>
 </body>
