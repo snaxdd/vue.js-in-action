@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue JS - Practice</title>
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <div class="">
+        <h1 v-text="sitename"></h1>
+      </div>
+      <button type="button" class="btn btn-light btn-icon-left btn-icon">
+        <svg class="bi icons-color-dark" width="20" height="20">
+          <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#basket" />
+        </svg>
+        Checkout {{ cartItemCount }}
+      </button>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col">
+          <figure>
+            <img :src="product.image">
+          </figure>
+        </div>
+        <div class="col">
+          <h1>{{ product.title }}</h1>
+          <p v-html="product.description"></p>
+          <p class="">
+            {{ product.price | formatPrice }}
+          </p>
+          <button class="btn btn-dark btn-icon-right btn-icon" type="button" @click="addToCart">
+            Add to cart
+            <svg class="bi icons-color-light" width="20" height="20">
+              <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
