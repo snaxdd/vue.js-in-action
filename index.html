@@ -76,6 +76,11 @@
         addToCart: function() {
           this.cart.push( this.product.id );
         }
+      },
+      computed: {
+        cartItemCount: function() {
+          return this.cart.length || '';
+        }
       }
     });
   </script>
