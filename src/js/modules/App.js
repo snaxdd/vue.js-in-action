@@ -18,7 +18,11 @@ var webstore = new Vue({
       image: 'src/assets/images/product-fullsize.png',
       availableInventory: 5
     },
-    cart: []
+    cart: [],
+    order: {
+      firstName: '',
+      lastName: ''
+    }
   },
   filters: {
     formatPrice: function (price) {
