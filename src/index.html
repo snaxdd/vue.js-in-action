@@ -54,9 +54,54 @@
           </div>
         </div>
         <div class="row" v-else>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <strong>First Name:</strong>
             <input v-model="order.firstName" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <strong>Last Name:</strong>
+            <input v-model="order.lastName" class="form-control">
+          </div>
+          <div class="form-group col-md-12">
+            <div>
+              <strong>Adress:</strong>
+            </div>
+            <div>
+              <input v-model="order.adress" class="form-control">
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <div>
+              <strong>City:</strong>
+            </div>
+            <div>
+              <input v-model="order.city" class="form-control">
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <strong>State:</strong>
+            <select v-model="order.state" class="form-control">
+              <option disabled value="">State</option>
+              <option value="AL">AL</option>
+              <option value="AR">AR</option>
+              <option value="CA">CA</option>
+              <option value="NV">NV</option>
+            </select>
+          </div>
+          <div class="form-group col-md-10">
+            <strong>Zip / Postal Code:</strong>
+            <input v-model="order.zip"
+              class="form-control"/> 
+          </div>
+          <div class="col-md-12">
+            <pre>
+              FirstName: {{ order.firstName }}
+              LastName: {{ order.lastName }}
+              Adress: {{ order.adress }}
+              City: {{ order.city }}
+              Zip: {{ order.zip }}
+              State: {{ order.state }}
+            </pre>
           </div>
         </div>  
       </div>
