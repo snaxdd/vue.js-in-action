@@ -10,10 +10,11 @@
 <body>
   <div id="app">
     <header>
-      <div class="">
+      <div>
         <h1 v-text="sitename"></h1>
       </div>
-      <button type="button" class="btn btn-light btn-icon-left btn-icon">
+      <button type="button" class="btn btn-light btn-icon-left btn-icon btn-checkout" 
+        @click="showCheckout">
         <svg class="bi icons-color-dark" width="20" height="20">
           <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#basket" />
         </svg>
@@ -22,24 +23,40 @@
     </header>
     <main>
       <div class="row">
-        <div class="col">
-          <figure>
-            <img :src="product.image">
-          </figure>
+        <div v-if="showProduct">
+          <div class="col">
+            <figure>
+              <img :src="product.image">
+            </figure>
+          </div>
+          <div class="col">
+            <h1>{{ product.title }}</h1>
+            <p v-html="product.description"></p>
+            <p class="">
+              {{ product.price | formatPrice }}
+            </p>
+            <button class="btn btn-dark btn-icon-right btn-icon" type="button" @click="addToCart" 
+              v-if="canAddToCart">
+              Add to cart
+              <svg class="bi icons-color-light" width="20" height="20">
+                <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
+              </svg>
+            </button>
+            <button class="btn disabled btn-dark btn-icon-right btn-icon" type="button" 
+              v-else>
+              Add to cart
+              <svg class="bi icons-color-light" width="20" height="20">
+                <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="col">
-          <h1>{{ product.title }}</h1>
-          <p v-html="product.description"></p>
-          <p class="">
-            {{ product.price | formatPrice }}
-          </p>
-          <button class="btn btn-dark btn-icon-right btn-icon" type="button" @click="addToCart">
-            Add to cart
-            <svg class="bi icons-color-light" width="20" height="20">
-              <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
-            </svg>
-          </button>
+        <div v-else>
+
         </div>
+      </div>
+      <div class="row">
+        
       </div>
     </main>
   </div>
