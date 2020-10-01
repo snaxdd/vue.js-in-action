@@ -32,6 +32,12 @@ var webstore = new Vue({
       gift: 'Do Not Send As A Gift',
       sendGift: 'Send As A Gift',
       dontSendGift: 'Do Not Send As A Gift'
+    },
+    states: {
+      AL: 'Alabama',
+      AR: 'Arizona',
+      CA: 'California',
+      NV: 'Nevada'
     }
   },
   filters: {
