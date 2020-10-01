@@ -67,7 +67,7 @@ var webstore = new Vue({
       this.showProduct = this.showProduct ? false : true;
     },
     submitForm() {
-      alert('Submitted');
+      alert('Submit');
     }
   },
   computed: {
