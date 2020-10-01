@@ -56,18 +56,18 @@
         <div class="row" v-else>
           <div class="col-md-6">
             <strong>First Name:</strong>
-            <input v-model="order.firstName" class="form-control">
+            <input v-model.trim="order.firstName" class="form-control">
           </div>
           <div class="col-md-6">
             <strong>Last Name:</strong>
-            <input v-model="order.lastName" class="form-control">
+            <input v-model.trim="order.lastName" class="form-control">
           </div>
           <div class="form-group col-md-12">
             <div>
               <strong>Address:</strong>
             </div>
             <div>
-              <input v-model="order.address" class="form-control">
+              <input v-model.trim="order.address" class="form-control">
             </div>
           </div>
           <div class="form-group col-md-12">
@@ -75,7 +75,7 @@
               <strong>City:</strong>
             </div>
             <div>
-              <input v-model="order.city" class="form-control">
+              <input v-model.trim="order.city" class="form-control">
             </div>
           </div>
           <div class="form-group col-md-2">
@@ -92,7 +92,7 @@
           </div>
           <div class="form-group col-md-6 offset-md-4">
             <strong>Zip / Postal Code:</strong>
-            <input v-model="order.zip"
+            <input v-model.number="order.zip"
               class="form-control"/> 
           </div>
           <div class="form-group col-md-6">
