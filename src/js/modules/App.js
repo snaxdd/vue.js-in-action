@@ -26,8 +26,12 @@ var webstore = new Vue({
       city: '',
       zip: '',
       state: '',
-      method: 'Home',
-      gift: false
+      method: 'Home Address',
+      business: 'Business Address',
+      home: 'Home Address',
+      gift: 'Do Not Send As A Gift',
+      sendGift: 'Send As A Gift',
+      dontSendGift: 'Do Not Send As A Gift'
     }
   },
   filters: {
