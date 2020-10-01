@@ -21,7 +21,13 @@ var webstore = new Vue({
     cart: [],
     order: {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      address: '',
+      city: '',
+      zip: '',
+      state: '',
+      method: 'Home',
+      gift: false
     }
   },
   filters: {
@@ -49,6 +55,9 @@ var webstore = new Vue({
     },
     showCheckout() {
       this.showProduct = this.showProduct ? false : true;
+    },
+    submitForm() {
+      alert('Submitted');
     }
   },
   computed: {

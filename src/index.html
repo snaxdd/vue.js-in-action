@@ -64,10 +64,10 @@
           </div>
           <div class="form-group col-md-12">
             <div>
-              <strong>Adress:</strong>
+              <strong>Address:</strong>
             </div>
             <div>
-              <input v-model="order.adress" class="form-control">
+              <input v-model="order.address" class="form-control">
             </div>
           </div>
           <div class="form-group col-md-12">
@@ -93,14 +93,37 @@
             <input v-model="order.zip"
               class="form-control"/> 
           </div>
+          <div class="form-group col-md-6">
+            <input type="checkbox" id="gift" value="true" v-model="order.gift">
+            <label for="gift">
+              Ship As Gift?
+            </label>
+          </div>
+          <div class="form-group col-md-6">
+            <input type="radio"
+              id="home"
+              value="Home"
+              v-model="order.method">
+            <label for="home">Home</label>
+            <input type="radio"
+              id="business"
+              value="Business"
+              v-model="order.method">
+            <label for="business">Business</label>
+          </div>
+          <div class="col-md-12 order-button">
+            <button type="submit" class="btn btn-lg btn-success submit" @click="submitForm">Place order</button>
+          </div>
           <div class="col-md-12">
             <pre>
               FirstName: {{ order.firstName }}
               LastName: {{ order.lastName }}
-              Adress: {{ order.adress }}
+              Address: {{ order.address }}
               City: {{ order.city }}
               Zip: {{ order.zip }}
               State: {{ order.state }}
+              Method: {{ order.method }}
+              Gift: {{ order.gift }}
             </pre>
           </div>
         </div>  
