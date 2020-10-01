@@ -24,7 +24,9 @@
     <main>
       <div class="container">
         <div class="row" v-if="showProduct">
-          <div class="product-card col-lg-4">
+          <div class="product-card col-lg-4"
+            v-for="product in products"
+          >
             <div class="product-card__image">
               <figure>
                 <img :src="product.image">
@@ -33,7 +35,13 @@
             <div class="product-card__description">
               <h1>{{ product.title }}</h1>
               <p v-html="product.description"></p>
-              <p class="">
+              <div class="rating">
+                <span v-bind:class="{'rating-active': checkRating(n, product)}"
+                  v-for="n in 5">
+                  ★
+                </span>
+              </div>
+              <p class="price">
                 {{ product.price | formatPrice }}
               </p>
               <button class="btn btn-dark btn-icon-right btn-icon btn-addToCart" type="button" @click="addToCart" 

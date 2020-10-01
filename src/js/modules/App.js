@@ -1,6 +1,7 @@
 'use strict';
 
 import Vue from 'vue/dist/vue.min';
+import axios from 'axios';
 
 Vue.config.devtools = true;
 
@@ -9,15 +10,7 @@ var webstore = new Vue({
   data: {
     sitename: 'Vue.js Pet Depot',
     showProduct: true,
-    product: {
-      id: 1001,
-      title: 'Cat Food, 25lb bag',
-      description: 'A 25 pound bag of <em>irresistible</em>,' +
-        'organic goodness for your cat.',
-      price: 2000,
-      image: 'src/assets/images/product-fullsize.png',
-      availableInventory: 10
-    },
+    products: [],
     cart: [],
     order: {
       firstName: '',
@@ -59,6 +52,13 @@ var webstore = new Vue({
       }
     }
   },
+  created: function() {
+    axios.get('../../../products.json')
+      .then((responce) => {
+        this.products = responce.data.products;
+        console.log(this.products);
+      });
+  },
   methods: {
     addToCart: function () {
       this.cart.push(this.product.id);
@@ -68,6 +68,9 @@ var webstore = new Vue({
     },
     submitForm() {
       alert('Submit');
+    },
+    checkRating(n, myProduct) {
+      return myProduct.rating - n >= 0;
     }
   },
   computed: {
@@ -75,7 +78,8 @@ var webstore = new Vue({
       return this.cart.length || '';
     },
     canAddToCart: function() {
-      return this.product.availableInventory > this.cartItemCount;
+      return this.products.availableInventory > this.cartItemCount;
     }
   }
 });
+
