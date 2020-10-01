@@ -16,7 +16,7 @@ var webstore = new Vue({
         'organic goodness for your cat.',
       price: 2000,
       image: 'src/assets/images/product-fullsize.png',
-      availableInventory: 5
+      availableInventory: 10
     },
     cart: [],
     order: {
