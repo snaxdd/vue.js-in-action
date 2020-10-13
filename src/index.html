@@ -13,8 +13,7 @@
       <div>
         <h1 v-text="sitename"></h1>
       </div>
-      <button type="button" class="btn btn-light btn-icon-left btn-icon btn-checkout" 
-        @click="showCheckout">
+      <button type="button" class="btn btn-light btn-icon-left btn-icon btn-checkout" @click="showCheckout">
         <svg class="bi icons-color-dark" width="20" height="20">
           <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#basket" />
         </svg>
@@ -24,55 +23,47 @@
     <main>
       <div class="container">
         <div class="row" v-if="showProduct">
-          <div class="product-card col-lg-4"
-            v-for="product in products"
-          >
-            <div class="product-card__image">
-              <figure>
-                <img :src="product.image">
-              </figure>
-            </div>
-            <div class="product-card__description">
-              <h1>{{ product.title }}</h1>
-              <p v-html="product.description"></p>
-              <div class="rating">
-                <span v-bind:class="{'rating-active': checkRating(n, product)}"
-                  v-for="n in 5">
-                  ★
+          <div class="product-card col-lg-4" v-for="product in products">
+            <div class="product-card-wrapper">
+              <div class="product-card__image">
+                <figure>
+                  <img :src="product.image">
+                </figure>
+              </div>
+              <div class="product-card__description">
+                <h1>{{ product.title }}</h1>
+                <p v-html="product.description"></p>
+                <div class="rating">
+                  <span v-bind:class="{'rating-active': checkRating(n, product)}" v-for="n in 5">
+                    ★
+                  </span>
+                </div>
+                <p class="price">
+                  {{ product.price | formatPrice }}
+                </p>
+                <button class="btn btn-dark btn-icon-right btn-icon btn-addToCart" type="button" @click="addToCart(product)"
+                  v-if="canAddToCart(product)">
+                  Add to cart
+                  <svg class="bi icons-color-light" width="20" height="20">
+                    <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
+                  </svg>
+                </button>
+                <button class="btn disabled btn-dark btn-icon-right btn-icon btn-addToCart" type="button" v-else>
+                  Add to cart
+                  <svg class="bi icons-color-light" width="20" height="20">
+                    <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
+                  </svg>
+                </button>
+                <span class="inventory-message" v-if="product.availableInventory - cartCount(product.id) === 0">
+                  All out!
+                </span>
+                <span class="inventory-message" v-else-if="product.availableInventory - cartCount(product.id) < 5">
+                  Only {{ product.availableInventory - cartCount(product.id) }} left!
+                </span>
+                <span class="inventory-message" v-else>
+                  Buy Now!
                 </span>
               </div>
-              <p class="price">
-                {{ product.price | formatPrice }}
-              </p>
-              <button class="btn btn-dark btn-icon-right btn-icon btn-addToCart" type="button" @click="addToCart" 
-                v-if="canAddToCart">
-                Add to cart
-                <svg class="bi icons-color-light" width="20" height="20">
-                  <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
-                </svg>
-              </button>
-              <button class="btn disabled btn-dark btn-icon-right btn-icon btn-addToCart" type="button" 
-                v-else>
-                Add to cart
-                <svg class="bi icons-color-light" width="20" height="20">
-                  <use xlink:href="~bootstrap-icons/bootstrap-icons.svg#cart-plus-fill" />
-                </svg>
-              </button>
-              <span class="inventory-message" 
-                v-if="product.availableInventory - cartItemCount === 0"
-              >
-              All out!
-              </span>
-              <span class="inventory-message"
-                v-else-if="product.availableInventory - cartItemCount < 5"
-              >
-              Only {{ product.availableInventory - cartItemCount }} left!
-              </span>
-              <span class="inventory-message"
-                v-else
-              >
-              Buy Now!
-              </span>
             </div>
           </div>
         </div>
@@ -105,38 +96,26 @@
             <strong>State:</strong>
             <select v-model="order.state" class="form-control">
               <option disabled value="">State</option>
-              <option 
-                v-for="(state, key) in states"
-                v-bind:value="state"
-              >
-              {{ key }}
+              <option v-for="(state, key) in states" v-bind:value="state">
+                {{ key }}
               </option>
             </select>
           </div>
           <div class="form-group col-md-6 offset-md-4">
             <strong>Zip / Postal Code:</strong>
-            <input v-model.number="order.zip"
-              class="form-control"/> 
+            <input v-model.number="order.zip" class="form-control" />
           </div>
           <div class="form-group col-md-6">
-            <input type="checkbox" id="gift" value="true" 
-            v-bind:true-value="order.sendGift"
-            v-bind:false-value="order.dontSendGift"
-            v-model="order.gift">
+            <input type="checkbox" id="gift" value="true" v-bind:true-value="order.sendGift"
+              v-bind:false-value="order.dontSendGift" v-model="order.gift">
             <label for="gift">
               Ship As Gift?
             </label>
           </div>
           <div class="form-group col-md-6">
-            <input type="radio"
-              id="home"
-              v-bind:value="order.home"
-              v-model="order.method">
+            <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
             <label for="home">Home</label>
-            <input type="radio"
-              id="business"
-              v-bind:value="order.business"
-              v-model="order.method">
+            <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
             <label for="business">Business</label>
           </div>
           <div class="col-md-12 order-button">
@@ -154,7 +133,7 @@
               Gift: {{ order.gift }}
             </pre>
           </div>
-        </div>  
+        </div>
       </div>
     </main>
   </div>

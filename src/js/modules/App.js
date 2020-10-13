@@ -52,16 +52,15 @@ var webstore = new Vue({
       }
     }
   },
-  created: function() {
+  created: function () {
     axios.get('../../../products.json')
       .then((responce) => {
         this.products = responce.data.products;
-        console.log(this.products);
       });
   },
   methods: {
-    addToCart: function () {
-      this.cart.push(this.product.id);
+    addToCart(aProduct) {
+      this.cart.push(aProduct.id);
     },
     showCheckout() {
       this.showProduct = this.showProduct ? false : true;
@@ -71,14 +70,25 @@ var webstore = new Vue({
     },
     checkRating(n, myProduct) {
       return myProduct.rating - n >= 0;
+    },
+    canAddToCart(aProduct) {
+      return aProduct.availableInventory > this.cartCount(aProduct.id);
+    },
+    cartCount(id) {
+      let count = 0;
+
+      for(let i = 0; i < this.cart.length; i++) {
+        if(this.cart[i] === id) {
+          count++;
+        }
+      }
+
+      return count;
     }
   },
   computed: {
     cartItemCount: function () {
       return this.cart.length || '';
-    },
-    canAddToCart: function() {
-      return this.products.availableInventory > this.cartItemCount;
     }
   }
 });

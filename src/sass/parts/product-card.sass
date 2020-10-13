@@ -1,13 +1,16 @@
 .product-card
-  padding: 25px
-  background-color: #e2eff5
-  border: 3px solid#c4d6e0
-  border-radius: 20px
-  text-align: center
+  padding: 10px
+  &-wrapper
+    background-color: #e2eff5
+    border: 3px solid#c4d6e0
+    border-radius: 20px
+    text-align: center
+    padding: 20px
+    overflow: hidden
   &__description
     display: flex
     flex-direction: column
-    & p 
+    & p
       margin-bottom: 0
   & .rating
     color: #999998
@@ -21,7 +24,7 @@
   &__image img
     max-width: 100%
 .inventory-message
-  color: red 
+  color: red
   font-weight: 600
 
 .btn-addToCart
