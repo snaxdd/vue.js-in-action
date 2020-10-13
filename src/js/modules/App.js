@@ -89,6 +89,11 @@ var webstore = new Vue({
   computed: {
     cartItemCount: function () {
       return this.cart.length || '';
+    },
+    sortedProducts() {
+      if(this.products.length > 0) {
+        let productsArray = this.products.slice(0);
+      }
     }
   }
 });
